@@ -1,0 +1,43 @@
+/*
+! ELEMENTOS RADIOS
+*/
+
+/* .classeRadio{
+background-color: aqua;
+} */
+/* #idRadio{
+    background-color:bisque ; 
+} */
+
+#idRadio{
+    Background-color:bisque    ; 
+}
+
+#saidaElementoListaOriginal{
+    display: flex;
+    
+}
+
+#textEntrada{
+    margin-left: 6px;
+    color: blue;
+  
+}
+
+#saidaElementoListaResultado{
+    display: flex;
+}
+
+#textSaidarResultado{
+    margin-left: 6px;
+    color: red;
+}
+
+#inputElemento1{
+    width: 50%;
+    margin-right: 10px;
+}
+
+.textTestaque{
+    color: blue;
+}
