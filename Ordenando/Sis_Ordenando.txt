@@ -1,16 +1,22 @@
-const body=document.querySelector("body");
+   /* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+  const container = document.createElement('div');
+  container.id = 'containerPrincipal';
 
 //==================================================================
 //todo: RESULTADO ( ARRAY)
-const saida = [];
-const saidaElemento=document.createElement("div");
-const saidaElementoListaOriginal=document.createElement("div");
-const saidaElementoListaResultado=document.createElement("div");
-const textSaidaRotulo=document.createElement("h4");
-const textSaidarResultado=document.createElement("h4");
-const textSaidaexplicacao=document.createElement("h4");
-const textEntrada=document.createElement("h4");
-const rotuloEntrada=document.createElement("h4");
+let saida: number[] = [];
+let saidastring = saida.map(num=>num.toString())
+let saidaElemento=document.createElement("div");
+let saidaElementoListaOriginal=document.createElement("div");
+let saidaElementoListaResultado=document.createElement("div");
+let textSaidaRotulo=document.createElement("h4");
+let textSaidarResultado=document.createElement("h4");
+let textSaidaexplicacao=document.createElement("h4");
+let textEntrada=document.createElement("h4");
+let rotuloEntrada=document.createElement("h4");
 rotuloEntrada.innerHTML = "Lista Original: "
 
 
@@ -33,27 +39,41 @@ textSaidaRotulo.id="textSaidaRotulo"
 saidaElementoListaResultado.id="saidaElementoListaResultado"
 textSaidarResultado.id="textSaidarResultado"
 
-
-
-
-
 // todo: CABEÇALHO
-const cabecalho=document.createElement("div");
-const textoCabecalho=document.createElement("h4");
+let cabecalho = document.createElement("div");
+
+let textoCabecalho = document.createElement("h4");
+textoCabecalho.innerHTML = "Missão Prática | Nível 2 | Mundo 2";
+cabecalho.appendChild(textoCabecalho);
+
+//==========================================================================
+
+// todo: ELEMENTO1
+let elemento1: HTMLElement = document.createElement("div");
+
+let textoElemento1: HTMLElement = document.createElement("h4");
+let inputElemento1: HTMLInputElement = document.createElement("input");
+let btnAdicionar: HTMLButtonElement = document.createElement("button");
+let btnOrdenar: HTMLButtonElement = document.createElement("button");
+let btnEmbaralhar: HTMLButtonElement = document.createElement("button");
+let btnLimpar: HTMLButtonElement = document.createElement("button");
+
+//todo: CABEÇALHO
+cabecalho=document.createElement("div");
+textoCabecalho=document.createElement("h4");
 textoCabecalho.innerHTML="Missão Prática | Nível 2 | Mundo 2";
 cabecalho.appendChild(textoCabecalho);
 
 //==========================================================================
 
 // todo: ELEMENTO1 
-const elemento1=document.createElement("div");
-const textoElemento1=document.createElement("h4");
-const inputElemento1 = document.createElement("input");
-const btnAdicionar = document.createElement("button");
-const btnOrdenar = document.createElement("button");
-const btnEmbaralhar = document.createElement("button");
-const btnLimpar = document.createElement("button");
-
+elemento1=document.createElement("div");
+textoElemento1=document.createElement("h4");
+inputElemento1 = document.createElement("input");
+btnAdicionar = document.createElement("button");
+btnOrdenar = document.createElement("button");
+btnEmbaralhar = document.createElement("button");
+btnLimpar = document.createElement("button");
 
 //todo: Incluindo os Itens na DIV (elemento1)
 elemento1.appendChild(textoElemento1);
@@ -62,7 +82,6 @@ elemento1.appendChild(btnAdicionar);
 elemento1.appendChild(btnOrdenar);
 elemento1.appendChild(btnEmbaralhar);
 elemento1.appendChild(btnLimpar);
-
 
 // todo: Adiciona o texto no botão e na Label Rotulo
 btnAdicionar.innerHTML = "Incluir";
@@ -75,35 +94,33 @@ textoElemento1.innerHTML = `1 - Esse trabalho tem o objetivo de inserir um valor
 inputElemento1.placeholder="Digite o número aqui e aperte o  <ENTER>  ou o botão  <INCLUIR>  bem ao lado ===>"
 inputElemento1.id="inputElemento1"
 
-
 //! FUNÇÕES 
 
 //TODO: Função ADICIONAR ELEMENTO na Array    
 const adicionarElemento = () => {   
-    let valorInserido = Number(inputElemento1.value);
+    const valorInserido= Number(inputElemento1.value);
     console.log(typeof valorInserido);
 
-    if ( valorInserido!==Number(inputElemento1.value) || valorInserido=="" ){
+    if ( valorInserido !== Number(inputElemento1.value) || inputElemento1.value === "" ){
         alert("Insira mais de um Número no campo abaixo");
         inputElemento1.value="";
         inputElemento1.focus();
-    }else{
+    } else {
         saida.push(valorInserido);
         
-        textEntrada.innerHTML= saida;
+        textEntrada.innerHTML = saida.toString();
         inputElemento1.value="";
         inputElemento1.focus();     
     }
 }
 
 //TODO: Função ORDENAR UMA ARRAY  compareFunction na Array 
-const compareFunction = (saida) => {
+const compareFunction = (saida: number[]) => {
     return saida.sort((a, b) => a - b);
-  }
-
-
-//TODO: Função ORDENAR UMA ARRAY  Bubble-Sort na Array 
-const bubbleSort = (array) => {
+  };
+  
+  //TODO: Função ORDENAR UMA ARRAY  Bubble-Sort na Array 
+  const bubbleSort = (array: number[]) => {
     let valorTrocado;
     do {
       valorTrocado = false;
@@ -117,10 +134,10 @@ const bubbleSort = (array) => {
       }
     } while (valorTrocado);
     return array;
-  }
+  };
 
-//TODO: Função ORDENAR UMA ARRAY-   selectionSort na Array 
-const selectionSort = (array) => {
+  //TODO: Função ORDENAR UMA ARRAY-   selectionSort na Array 
+const selectionSort = (array: number[]) => {
     for (let i = 0; i < array.length - 1; i++) {
       let minIndex = i;
       for (let j = i + 1; j < array.length; j++) {
@@ -139,7 +156,7 @@ const selectionSort = (array) => {
 
 
 //TODO: Função ORDENAR UMA ARRAY-   quickSort na Array 
-const quickSort = (array, p, r) => {
+const quickSort = (array: number[], p: number, r: number) => {
     if (p < r) {
       const q = partition(array, p, r);
       quickSort(array, p, q - 1);
@@ -148,7 +165,7 @@ const quickSort = (array, p, r) => {
     return array;
   }
   
-  const partition = (array, p, r) => {
+  const partition = (array: number[], p: number, r: number) => {
     const pivot = array[r];
     let i = p - 1;
     for (let j = p; j <= r - 1; j++) {
@@ -165,105 +182,117 @@ const quickSort = (array, p, r) => {
     return i + 1;
   }
 
-//TODO: Função EMBARALHA UMA ARRAY-   shuffle na Array 
-    const shuffle = (array) => {
+  //TODO: Função EMBARALHA UMA ARRAY-   shuffle na Array 
+const shuffle = (array: any[]) => {
     for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
     }
     return array;
-    }
-
-
-
-//! BOTÕES
-//todo: CLICK DOS BOTÕES
-
-// * BOTÃO ADICIONAR
-btnAdicionar.addEventListener("click",()=>{
+  };
+  
+  //! BOTÕES
+  //todo: CLICK DOS BOTÕES
+  
+  // * BOTÃO ADICIONAR
+  btnAdicionar.addEventListener("click", () => {
     adicionarElemento();
-});
-
-//todo: ADICIONAR ELEMENTO USANDO O ENTER NO INPUT
-inputElemento1.addEventListener('keyup', function(event) {
-  if (event.keyCode === 13) {adicionarElemento()}
- 
-});
-
-// * BOTÃO LIMPAR
-btnLimpar.addEventListener("click",()=>{
-
-  if(saida!==[] && saida.length<1){
-    alert("Lista já se encontra vazia")
-    inputElemento1.focus();
-  }else{
-    textSaidaRotulo.innerHTML="";
-    textSaidarResultado.innerHTML = ""
-    textSaidaexplicacao.innerHTML=""
-    textEntrada.innerHTML=""
-    botaoRadio1.checked = false;
-    botaoRadio2.checked = false;
-    botaoRadio3.checked = false;
-    botaoRadio4.checked = false;
-    botaoRadio5.checked = false;
-    saida.splice(0,saida.length);
-
-}
-
-});
-
-
-// * BOTÃO EMBARALHAR
-btnEmbaralhar.addEventListener("click",()=>{
-    if(saida!==[] && saida.length<2){
-        alert("Lista vazia ou com somente um Número (Inclua mais de um número na lista)")
-        inputElemento1.focus();
-    }else{
-        textSaidaRotulo.innerHTML="Resultado: ";
-        textSaidarResultado.innerHTML = shuffle(saida);
-        textSaidaexplicacao.innerHTML=`<span class= "textTestaque">FEITO O EMBARALHAMENTO</span><br/><br/>
-
-        `
+  });
+  
+  //todo: ADICIONAR ELEMENTO USANDO O ENTER NO INPUT
+  inputElemento1.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      adicionarElemento();
     }
+  });
+  
+  // * BOTÃO LIMPAR
+  btnLimpar.addEventListener("click", () => {
+    if (saida.length==0 && saida.length < 1) {
+      alert("Lista já se encontra vazia");
+      inputElemento1.focus();
+    } else {
+      textSaidaRotulo.innerHTML = "";
+      textSaidarResultado.innerHTML = "";
+      textSaidaexplicacao.innerHTML = "";
+      textEntrada.innerHTML = "";
+      botaoRadio1.checked = false;
+      botaoRadio2.checked = false;
+      botaoRadio3.checked = false;
+      botaoRadio4.checked = false;
+      botaoRadio5.checked = false;
+      saida.splice(0, saida.length);
+    }
+  });
 
-});
+  // * BOTÃO EMBARALHAR
+btnEmbaralhar.addEventListener("click", () => {
+    if (saida.length !== 0 && saida.length < 2) {
+      alert("Lista vazia ou com somente um Número (Inclua mais de um número na lista)");
+      inputElemento1.focus();
+    } else {
+      textSaidaRotulo.innerHTML = "Resultado: ";
+      const resultado = shuffle(saida);
+      const resultadoString = resultado.toString();
+      textSaidarResultado.innerHTML = resultadoString;
+      textSaidaexplicacao.innerHTML = `<span class= "textTestaque">FEITO O EMBARALHAMENTO</span><br/><br/>
+  
+      `;
+    }
+  });
 
-// * BOTÃO ORDENAR
+  // * BOTÃO ORDENAR
 
 btnOrdenar.addEventListener("click",()=>{ 
 
-    if(botaoRadio1.checked == true && saida.length>1){
-        textSaidarResultado.innerHTML = saida;
-        textSaidaRotulo.innerHTML="Resultado: ";
-        textSaidarResultado.innerHTML = saida.sort();
-        textSaidaexplicacao.innerHTML=`<span class="textTestaque">FUNÇÃO SORT NATIVA DO JS, ORDENA EM ORDEM ALFABÉTICA</span> (É usada para classificar os elementos de um array 
+    if(botaoRadio1.checked === true && saida.length > 1){
+        const saidaText = saida;
+        const resultadoSaidaText = saidaText.toString();
+        textSaidarResultado.innerHTML = resultadoSaidaText;
+        textSaidaRotulo.innerHTML = "Resultado: ";
+
+        const saidaTextSort = saida.sort();
+        const resultadosaidaTextSort= saidaTextSort.toString();
+        textSaidarResultado.innerHTML = resultadosaidaTextSort;
+        textSaidaexplicacao.innerHTML = `<span class="textTestaque">FUNÇÃO SORT NATIVA DO JS, ORDENA EM ORDEM ALFABÉTICA</span> (É usada para classificar os elementos de um array 
         em ordem crescente ou decrescente,<br/> com base em um critério específico, caso não seja especificado, ordena em ordem 
         alfabética)<br/><br/>SINTAX:<br/><br/> array.sort()`;
         
         
-    }else if(botaoRadio2.checked == true && saida.length>1){
-        textSaidarResultado.innerHTML = saida;
-        textSaidaRotulo.innerHTML="Resultado: ";
-        textSaidarResultado.innerHTML = compareFunction(saida);
-        textSaidaexplicacao.innerHTML=`<span class="textTestaque">COMPARE FUNCTION</span>  ordena uma array numericamente, A função "compareFunction" é uma função que deve receber dois parâmetros (a e b) e retornar um valor negativo se a deve ser 
+    }else if(botaoRadio2.checked === true && saida.length > 1){
+
+        const saidaText1 = saida;
+        const resultadoSaidaText1 = saidaText1.toString();
+        textSaidarResultado.innerHTML = resultadoSaidaText1;
+        textSaidaRotulo.innerHTML = "Resultado: ";
+
+        const saidaTextCompareFunction = compareFunction(saida);
+        const resultadosaidaCompareFunction= saidaTextCompareFunction.toString();
+        textSaidarResultado.innerHTML = resultadosaidaCompareFunction;
+        textSaidaexplicacao.innerHTML = `<span class="textTestaque">COMPARE FUNCTION</span>  ordena uma array numericamente, A função "compareFunction" é uma função que deve receber dois parâmetros (a e b) e retornar um valor negativo se a deve ser 
         classificado antes de b, um valor positivo se b deve ser classificado antes de a, e 0 se a e b são considerados iguais em termos de ordenação.
         <br/> <br/>SINTAX:<br/><br/>  
         
-        const compareFunction = (saida) => {<br/>  
+        const compareFunction = (saida: number[]) => {<br/>  
             return saida.sort((a, b) => a - b);<br/>  
           }<br/>  `;
 
-    }else if(botaoRadio3.checked == true && saida.length>1){
-        textSaidarResultado.innerHTML = saida;
-        textSaidaRotulo.innerHTML="Resultado: ";
-        textSaidarResultado.innerHTML = bubbleSort(saida);
-        textSaidaexplicacao.innerHTML=`<span class="textTestaque">O BUBBLE SORT</span>  é um algoritmo de ordenação simples que percorre uma lista de elementos várias vezes, 
+    }else if(botaoRadio3.checked === true && saida.length > 1){
+        const saidaText2 = saida;
+        const resultadoSaidaText2 = saidaText2.toString();
+        textSaidarResultado.innerHTML = resultadoSaidaText2;
+        textSaidaRotulo.innerHTML = "Resultado: ";
+
+        const saidabubbleSort = bubbleSort(saida);
+        const resultadoSaidaSaidabubbleSort = saidabubbleSort.toString();
+        textSaidarResultado.innerHTML = resultadoSaidaSaidabubbleSort;
+        textSaidaexplicacao.innerHTML = `<span class="textTestaque">O BUBBLE SORT</span>  é um algoritmo de ordenação simples que percorre uma lista de elementos várias vezes, 
         comparando elementos adjacentes e trocando-os se estiverem na ordem errada. Esse processo continua até que a lista esteja completamente ordenada.
         <br/> <br/>SINTAX:<br/><br/> 
         
-        const bubbleSort = (array) => {<br/> 
+        const bubbleSort = (array: number[]) => {<br/> 
             let valorTrocado;<br/> 
             do {<br/> 
               valorTrocado = false;<br/> 
@@ -278,13 +307,18 @@ btnOrdenar.addEventListener("click",()=>{
             } while (valorTrocado);<br/> 
             return array;<br/> 
           }<br/> 
-          `
+          `;
+    
+}else if (botaoRadio4.checked == true && saida.length>1){
+    const saidaText3 = saida;
+    const resultadoSaidaText3 = saidaText3.toString();
+    textSaidarResultado.innerHTML = resultadoSaidaText3;
+    textSaidaRotulo.innerHTML="Resultado: ";
 
-    }else if(botaoRadio4.checked == true && saida.length>1){
-        textSaidarResultado.innerHTML = saida;
-        textSaidaRotulo.innerHTML="Resultado: ";
-        textSaidarResultado.innerHTML = quickSort(saida, 0, saida.length - 1);
-        textSaidaexplicacao.innerHTML=`Uma função <span class="textTestaque">QUICK SORT</span>  é um algoritmo de ordenação que segue o paradigma 
+    const saidaBubbleSort = quickSort(saida, 0, saida.length - 1);
+    const resultadoSaidaSaidaBubbleSort = saidaBubbleSort.toString();
+     textSaidarResultado.innerHTML = resultadoSaidaSaidaBubbleSort;
+     textSaidaexplicacao.innerHTML=`Uma função <span class="textTestaque">QUICK SORT</span>  é um algoritmo de ordenação que segue o paradigma 
         "dividir para conquistar". Essa função divide a matriz em duas partes, uma com elementos menores que um pivô 
         escolhido e outra com elementos maiores que o pivô. Em seguida, a função é chamada recursivamente em cada parte 
         até que a matriz esteja completamente ordenada.<br/><br/> 
@@ -319,12 +353,16 @@ btnOrdenar.addEventListener("click",()=>{
             array[r] = temp;<br/> 
             return i + 1;<br/> 
           }<br/>`;
-    
-    }else if(botaoRadio5.checked == true && saida.length>1){
-        textSaidarResultado.innerHTML = saida;
-        textSaidaRotulo.innerHTML="Resultado: ";
-        textSaidarResultado.innerHTML = selectionSort(saida);
-        textSaidaexplicacao.innerHTML=`<span class="textTestaque">O SELECTION SORT</span>  é um algoritmo de ordenação simples e de fácil implementação. 
+}else if(botaoRadio5.checked == true && saida.length>1){
+    const saidaText4 = saida;
+    const resultadoSaidaText4 = saidaText4.toString();
+    textSaidarResultado.innerHTML = resultadoSaidaText4;
+    textSaidaRotulo.innerHTML="Resultado: ";
+
+    const saidabubbleSort = selectionSort(saida);
+        const resultadoSaidaSaidabubbleSort = saidabubbleSort.toString();
+        textSaidarResultado.innerHTML = resultadoSaidaSaidabubbleSort;
+    textSaidaexplicacao.innerHTML=`<span class="textTestaque">O SELECTION SORT</span>  é um algoritmo de ordenação simples e de fácil implementação. 
         Ele funciona da seguinte maneira:<br/> <br/> 
 
         Percorre todo o vetor a ser ordenado, buscando o menor elemento;<br/> 
@@ -350,7 +388,7 @@ btnOrdenar.addEventListener("click",()=>{
             }<br/>
             return array;<br/>
           }<br/>
-        `        
+        `      
     }else if(botaoRadio1.checked !== true  || botaoRadio2.checked !== true  || botaoRadio3.checked !== true  || botaoRadio4.checked !== true ){
         alert(`Opss... Algo de Errado !!
         1 - Verifique se você inseriu mais de um número na lista; 
@@ -463,15 +501,28 @@ botaoRadio5.addEventListener("click",()=>{
     botaoRadio4.checked = false;
 })
 
-body.appendChild(cabecalho)
-body.appendChild(elemento1)
-body.appendChild(elementoRadio)
-body.appendChild(saidaElemento)
+// if (body) {
+//     body.appendChild(cabecalho);
+//     body.appendChild(elemento1);
+//     body.appendChild(elementoRadio);
+//     body.appendChild(saidaElemento);
+//   } else {
+//     console.log('O elemento body não foi encontrado no documento HTML.');
+//   }
+
+
+ container.appendChild(cabecalho)
+ container.appendChild(elemento1)
+ container.appendChild(elementoRadio)
+ container.appendChild(saidaElemento)
 
 
 
 
-
-
-
+const sistOrdenar = document.getElementById('containerPrincipal');
+      sistOrdenar?.replaceWith(container);
+      
+function mergeSort(saida: number[]): string {
+    throw new Error("Function not implemented.");
+}
 
